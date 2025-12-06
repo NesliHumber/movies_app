@@ -2,19 +2,18 @@
 require("dotenv").config();
 
 const express = require("express");
-const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const path = require("path");
 
+// Vercel-optimized MongoDB connection
+const connectDB = require("./lib/db");
+
 const app = express();
 
-// ====== DB CONNECTION ======
-mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/movies_app")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// Connect to MongoDB (optimized for Vercel serverless)
+connectDB();
 
 // ====== MIDDLEWARE ======
 app.set("view engine", "ejs");
@@ -26,7 +25,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    secret: "supersecret", // in real apps, use env
+    secret: process.env.SESSION_SECRET || "supersecret",
     resave: false,
     saveUninitialized: false,
   })
@@ -34,11 +33,11 @@ app.use(
 
 app.use(flash());
 
-// Globals for EJS (flash + current user)
+// Globals for EJS
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currentUser = req.session.user; // we'll set this on login
+  res.locals.currentUser = req.session.user;
   next();
 });
 
@@ -54,8 +53,12 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-// ====== PORT ======
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// ====== PORT (local only) ======
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app; // IMPORTANT for Vercel serverless
