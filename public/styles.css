@@ -1,0 +1,279 @@
+/* GLOBAL PAGE STYLE */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, "Helvetica Neue", sans-serif;
+  background: #f5f6f7; /* Soft minimalist off-white */
+  color: #2a2e32;
+}
+
+.page-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrap {
+  flex: 1;
+  padding: 25px;
+}
+
+/* NAVIGATION BAR */
+.navbar {
+  background: #e0e4e7; /* soft light gray */
+  padding: 15px 30px;
+  border-bottom: 2px solid #c9ced3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* left | center | right */
+}
+
+/* Brand (left) */
+.nav-brand {
+  color: #2a2e32;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Center navigation links */
+.nav-links {
+  display: flex;
+  gap: 55px;  /* spacing between Home and Movies */
+}
+
+.nav-links a {
+  color: #444b51;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+/* Right user area */
+.nav-user-area {
+  display: flex;
+  align-items: center;
+  gap: 45px; /* spacing between Hi user and Logout */
+}
+
+/* Greeting text */
+.nav-user {
+  color: #2a2e32;
+  font-weight: 600;
+}
+
+/* FLASH MESSAGES */
+.flash {
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px #00000010;
+}
+
+.flash.success {
+  background: #e9f7ec;
+  border-left: 4px solid #58c178;
+}
+
+.flash.error {
+  background: #fde9e9;
+  border-left: 4px solid #e45757;
+}
+
+/* FORMS */
+form {
+  max-width: 600px;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px #00000010;
+}
+
+form label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #2a2e32;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccd1d5;
+  border-radius: 8px;
+  background: #fafbfc;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #8aa4b1;
+  outline: none;
+  background: #ffffff;
+}
+
+form button {
+  padding: 12px 20px;
+  background: #8aa4b1; /* muted elegant blue-gray */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+form button:hover {
+  background: #6f8a99;
+}
+
+/* MOVIE LIST */
+ul.movie-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.movie-list li {
+  background: white;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #00000010;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.movie-list li a {
+  color: #4b6f82;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+ul.movie-list li a:hover {
+  text-decoration: underline;
+}
+
+/* MOVIE DETAILS */
+.movie-details img {
+  border-radius: 10px;
+  max-width: 280px;
+  box-shadow: 0 4px 20px #00000015;
+}
+
+.movie-details h1 {
+  font-weight: 600;
+  color: #2a2e32;
+}
+
+.movie-details p {
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* FOOTER */
+.footer {
+  background: #e0e4e7;
+  color: #2a2e32;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  border-top: 2px solid #c9ced3;
+}
+
+.movie-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* even clean spacing */
+  margin-top: 20px;
+}
+
+.movie-actions form {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-block;
+}
+
+/* Base button style */
+.btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-secondary {
+  background: #8aa4b1;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #6f8a99;
+}
+
+.btn-danger {
+  background: #d95c5c;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #c04040;
+}
+
+.btn-light {
+  background: #e4e6e7;
+  color: #2a2e32;
+}
+
+.btn-light:hover {
+  background: #d4d6d7;
+}
+
+/* Also ensure Delete form looks inline */
+.movie-actions form {
+  display: inline-block;
+  margin: 0;
+}
+
+/* Add Movie button */
+
+.add-movie-wrapper {
+  margin-bottom: 25px;
+  text-align: right; /* Align to the right like modern dashboards */
+}
+
+.btn-primary {
+  background: #8aa4b1;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #6f8a99;
+}
+
+

@@ -1,0 +1,24 @@
+<%- include("../partials/header") %>
+
+<% if (currentUser) { %>
+  <div class="add-movie-wrapper">
+    <a href="/movies/new" class="btn btn-primary">+ Add Movie</a>
+  </div>
+<% } %>
+
+<h1>All Movies</h1>
+
+<% if (movies.length === 0) { %>
+  <p>No movies yet.</p>
+<% } else { %>
+  <ul>
+    <% movies.forEach(movie => { %>
+      <li>
+        <a href="/movies/<%= movie._id %>"><%= movie.name %></a>
+        (Rating: <%= movie.rating %>) – Added by <%= movie.createdBy?.username || "Unknown" %>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include("../partials/footer") %>

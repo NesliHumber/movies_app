@@ -1,0 +1,41 @@
+<%- include("../partials/header") %>
+
+<h1>Add New Movie</h1>
+
+<% if (errors.length) { %>
+  <ul class="errors">
+    <% errors.forEach(e => { %>
+      <li><%= e %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/movies" method="POST">
+  <label>Name:
+    <input type="text" name="name" value="<%= old.name || '' %>">
+  </label><br>
+
+  <label>Description:<br>
+    <textarea name="description" rows="4"><%= old.description || '' %></textarea>
+  </label><br>
+
+  <label>Year:
+    <input type="number" name="year" value="<%= old.year || '' %>">
+  </label><br>
+
+  <label>Genres (comma separated):
+    <input type="text" name="genres" value="<%= old.genres || '' %>">
+  </label><br>
+
+  <label>Rating (0-10):
+    <input type="number" step="0.1" name="rating" value="<%= old.rating || '' %>">
+  </label><br>
+
+  <label>Poster URL (optional):
+    <input type="text" name="posterUrl" value="<%= old.posterUrl || '' %>">
+  </label><br>
+
+  <button type="submit">Add Movie</button>
+</form>
+
+<%- include("../partials/footer") %>

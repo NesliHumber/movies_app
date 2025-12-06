@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movies App</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<div class="page-container">  <!-- NEW WRAPPER FOR STICKY FOOTER -->
+<div class="content-wrap">     <!-- NEW content wrapper -->
+
+<nav class="navbar">
+  <!-- LEFT -->
+  <a href="/" class="nav-brand">MoviesApp</a>
+
+  <!-- CENTER -->
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/movies">Movies</a>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="nav-user-area">
+    <% if (currentUser) { %>
+      <span class="nav-user">Hi, <%= currentUser.username %></span>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% } %>
+  </div>
+</nav>
+
+<% if (success && success.length) { %>
+  <div class="flash success"><%= success %></div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="flash error"><%= error %></div>
+<% } %>
+
