@@ -1,4 +1,6 @@
-/* GLOBAL PAGE STYLE */
+/* =========================================================
+   GLOBAL PAGE STYLE
+   ========================================================= */
 html, body {
   height: 100%;
   margin: 0;
@@ -18,7 +20,10 @@ html, body {
   padding: 25px;
 }
 
-/* NAVIGATION BAR */
+
+/* =========================================================
+   NAVIGATION BAR
+   ========================================================= */
 .navbar {
   background: #e0e4e7;
   padding: 15px 30px;
@@ -28,7 +33,6 @@ html, body {
   justify-content: space-between;
 }
 
-/* Brand (left) */
 .nav-brand {
   color: #2a2e32;
   font-size: 1.25rem;
@@ -36,7 +40,6 @@ html, body {
   text-decoration: none;
 }
 
-/* Center navigation links */
 .nav-links {
   display: flex;
   gap: 55px;
@@ -54,15 +57,13 @@ html, body {
   color: #000;
 }
 
-/* Right user area */
 .nav-user-area {
   display: flex;
   align-items: center;
-  gap: 45px; /* space between user and logout link */
+  gap: 45px;
 }
 
-/* Greeting text */
-nav-user {
+.nav-user {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -75,7 +76,10 @@ nav-user {
   color: #444;
 }
 
-/* FLASH MESSAGES */
+
+/* =========================================================
+   FLASH MESSAGES
+   ========================================================= */
 .flash {
   padding: 12px 18px;
   border-radius: 8px;
@@ -94,7 +98,10 @@ nav-user {
   border-left: 4px solid #e45757;
 }
 
-/* FORMS */
+
+/* =========================================================
+   FORMS
+   ========================================================= */
 form {
   max-width: 600px;
   background: #ffffff;
@@ -132,9 +139,56 @@ form textarea:focus {
   background: #ffffff;
 }
 
+
+/* =========================================================
+   UNIFIED BUTTON SYSTEM
+   ========================================================= */
+/* Base button style */
+.btn,
+.action-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  margin-right: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover,
+.action-btn:hover {
+  opacity: 0.9;
+}
+
+/* Button variations */
+.btn-primary,
+.edit-btn,
+.btn-secondary {
+  background: #6b8fa1;
+  color: white;
+}
+
+.delete-btn,
+.btn-danger {
+  background: #d9534f;
+  color: white;
+}
+
+.cancel-btn,
+.back-btn,
+.btn-light {
+  background: #6b8fa1;
+  color: white;
+}
+
+
+/* In-form submit button */
 form button {
   padding: 12px 20px;
-  background: #8aa4b1; /* muted elegant blue-gray */
+  background: #8aa4b1;
   color: white;
   border: none;
   border-radius: 8px;
@@ -142,58 +196,168 @@ form button {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: background 0.2s ease;
 }
 
 form button:hover {
   background: #6f8a99;
 }
 
-/* MOVIE LIST */
-ul.movie-list {
-  list-style: none;
-  padding-left: 0;
+
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
+.home-wrapper {
+  text-align: center;
+  margin-top: 40px;     /* Reduced height */
+  margin-bottom: 20px;
 }
 
-ul.movie-list li {
-  background: white;
-  padding: 15px 20px;
-  margin-bottom: 12px;
+/* =========================================================
+   MOVIE LIST (CARDS GRID)
+   ========================================================= */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.movie-card {
+  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 2px 8px #00000010;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.no-poster {
+  width: 100%;
+  height: 300px;
+  background: #d3d8de;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #555;
 }
 
-ul.movie-list li a {
-  color: #4b6f82;
+.rating {
+  font-size: 1.1rem;
   font-weight: 600;
+}
+
+.added-by {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Card view button */
+.view-btn {
+  background: #6b8fa1;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
   text-decoration: none;
-}
-
-ul.movie-list li a:hover {
-  text-decoration: underline;
-}
-
-/* MOVIE DETAILS */
-.movie-details img {
-  border-radius: 10px;
-  max-width: 280px;
-  box-shadow: 0 4px 20px #00000015;
-}
-
-.movie-details h1 {
   font-weight: 600;
-  color: #2a2e32;
 }
 
-.movie-details p {
-  line-height: 1.6;
+.add-movie-wrapper {
+  margin-top: 25px;   /* space BELOW header */
+  margin-bottom: 20px;
+}
+
+.add-movie-wrapper .btn {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.movies-header {
+  display: flex;
+  justify-content: space-between; /* left text + right button */
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.add-movie-btn {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   MOVIE DETAILS PAGE
+   ========================================================= */
+.movie-detail-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+/* Poster */
+.detail-poster img {
+  width: 320px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.no-poster-large {
+  width: 320px;
+  height: 460px;
+  background: #d3d8de;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #555;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Right side info */
+.detail-info {
+  flex: 1;
   font-size: 1.05rem;
+  line-height: 1.6;
 }
 
-/* FOOTER */
+.detail-info p {
+  margin-bottom: 12px;
+}
+
+.detail-title {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.detail-buttons {
+  margin-top: 25px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 .footer {
   background: #e0e4e7;
   color: #2a2e32;
@@ -203,90 +367,59 @@ ul.movie-list li a:hover {
   border-top: 2px solid #c9ced3;
 }
 
-.movie-actions {
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
+
+.search-form {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;     /* Search bar closer to subtitle */
+  margin-bottom: 25px;
+}
+
+.search-form input {
+  width: 320px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+}
+
+.search-form button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+/* =========================================================
+   Movie List (text-only cards on the home page)
+   ========================================================= */
+
+.movie-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   margin-top: 20px;
 }
 
-.movie-actions form {
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: inline-block;
-}
-
-/* Base button style */
-.btn {
-  padding: 10px 18px;
+.movie-item {
+  background: #ffffff;
+  padding: 15px;
   border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: inline-block;
-  text-align: center;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.btn-secondary {
-  background: #8aa4b1;
-  color: white;
+.movie-item h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.2rem;
+  color: #333;
 }
 
-.btn-secondary:hover {
-  background: #6f8a99;
+.movie-item p {
+  margin: 3px 0;
+  color: #555;
 }
 
-.btn-danger {
-  background: #d95c5c;
-  color: white;
-  border: none;
-}
-
-.btn-danger:hover {
-  background: #c04040;
-}
-
-.btn-light {
-  background: #e4e6e7;
-  color: #2a2e32;
-}
-
-.btn-light:hover {
-  background: #d4d6d7;
-}
-
-.movie-actions form {
-  display: inline-block;
-  margin: 0;
-}
-
-/* Add Movie button */
-.add-movie-wrapper {
-  margin-bottom: 25px;
-  text-align: right;
-}
-
-.btn-primary {
-  background: #8aa4b1;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.btn-primary:hover {
-  background: #6f8a99;
-}
-
-.home-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-  text-align: center;
-}

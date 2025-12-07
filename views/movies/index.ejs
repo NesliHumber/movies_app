@@ -1,24 +1,43 @@
 <%- include("../partials/header") %>
 
-<% if (currentUser) { %>
-  <div class="add-movie-wrapper">
-    <a href="/movies/new" class="btn btn-primary">+ Add Movie</a>
-  </div>
-<% } %>
-
-<h1>All Movies</h1>
-
 <% if (movies.length === 0) { %>
   <p>No movies yet.</p>
 <% } else { %>
-  <ul>
-    <% movies.forEach(movie => { %>
-      <li>
-        <a href="/movies/<%= movie._id %>"><%= movie.name %></a>
-        (Rating: <%= movie.rating %>) – Added by <%= movie.createdBy?.username || "Unknown" %>
-      </li>
-    <% }); %>
-  </ul>
+
+  <div class="movies-header">
+    <h1>All Movies</h1>
+
+    <% if (currentUser) { %>
+      <a href="/movies/new" class="btn btn-primary add-movie-btn">+ Add Movie</a>
+    <% } %>
+  </div>
+
+<div class="movie-grid">
+  <% movies.forEach(movie => { %>
+    <div class="movie-card">
+      
+      <!-- Poster -->
+      <% if (movie.posterUrl) { %>
+        <img src="<%= movie.posterUrl %>" class="movie-poster" alt="<%= movie.name %> poster">
+      <% } else { %>
+        <div class="no-poster">No Image</div>
+      <% } %>
+
+      <!-- Title -->
+      <h3><%= movie.name %></h3>
+
+      <!-- Rating -->
+      <p class="rating">⭐ <%= movie.rating %></p>
+
+      <!-- Added by -->
+      <p class="added-by">Added by: <%= movie.createdBy.username %></p>
+
+      <!-- View button -->
+      <a class="view-btn" href="/movies/<%= movie._id %>">View Details</a>
+    </div>
+  <% }) %>
+</div>
+
 <% } %>
 
 <%- include("../partials/footer") %>

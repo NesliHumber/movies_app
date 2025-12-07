@@ -6,13 +6,12 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const path = require("path");
+const Movie = require("./models/Movie"); // ← IMPORTANT for home page search
 
-// Vercel-optimized MongoDB connection
+// MongoDB (works on Vercel)
 const connectDB = require("./lib/db");
 
 const app = express();
-
-// Connect to MongoDB (optimized for Vercel serverless)
 connectDB();
 
 // ====== MIDDLEWARE ======
@@ -33,7 +32,7 @@ app.use(
 
 app.use(flash());
 
-// Globals for EJS
+// Global vars for EJS
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -48,9 +47,29 @@ const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
 app.use("/movies", movieRoutes);
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("home");
+// ====== HOME PAGE WITH SEARCH ======
+app.get("/", async (req, res) => {
+  const search = req.query.search || "";
+
+  const searchRegex = new RegExp(search, "i");
+
+  let movies = [];
+
+  if (search) {
+    movies = await Movie.find({
+      $or: [
+        { name: searchRegex },
+        { description: searchRegex },
+        { genres: searchRegex },
+        { year: !isNaN(Number(search)) ? Number(search) : undefined },
+        { rating: !isNaN(Number(search)) ? Number(search) : undefined },
+      ],
+    }).lean();
+  } else {
+    movies = await Movie.find({}).lean();
+  }
+
+  res.render("home", { movies, search });
 });
 
 // ====== PORT (local only) ======
@@ -61,4 +80,5 @@ if (!process.env.VERCEL) {
   });
 }
 
-module.exports = app; // IMPORTANT for Vercel serverless
+module.exports = app;
+

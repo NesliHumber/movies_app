@@ -2,7 +2,40 @@
 
 <div class="home-wrapper">
   <h1>Welcome to Movies App</h1>
-  <p>Browse, add, and edit movies after logging in.</p>
+  <p>Browse or search for movies.</p>
+
+  <!-- SEARCH BAR RIGHT UNDER SUBTITLE -->
+  <form action="/" method="GET" class="search-form">
+    <input 
+      type="text" 
+      name="search" 
+      placeholder="Search by title, genre, year, rating..."
+      value="<%= search %>"
+    />
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
 </div>
 
+<!-- MOVIE RESULTS -->
+<% if (movies.length === 0) { %>
+  <p>No movies found.</p>
+<% } else { %>
+  <h2>Movie Results</h2>
+
+  <div class="movie-list">
+    <% movies.forEach(movie => { %>
+      <div class="movie-item">
+        <h3><%= movie.name %></h3>
+        <p><strong>Year:</strong> <%= movie.year %></p>
+        <p><strong>Genres:</strong> <%= movie.genres.join(", ") %></p>
+        <p><strong>Rating:</strong> ⭐ <%= movie.rating %></p>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
 <%- include("partials/footer") %>
+
+
+
+

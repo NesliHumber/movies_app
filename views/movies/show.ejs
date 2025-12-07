@@ -1,44 +1,55 @@
 <%- include("../partials/header") %>
 
-<div class="movie-details">
+<div class="movie-detail-container">
 
-  <h1><%= movie.name %></h1>
+  <!-- LEFT: Poster -->
+  <div class="detail-poster">
+    <% if (movie.posterUrl) { %>
+      <img src="<%= movie.posterUrl %>" alt="<%= movie.name %> poster">
+    <% } else { %>
+      <div class="no-poster-large">No Image</div>
+    <% } %>
+  </div>
 
-  <p><strong>Year:</strong> <%= movie.year %></p>
+  <!-- RIGHT: Details -->
+  <div class="detail-info">
 
-  <p><strong>Genres:</strong>
-    <%= movie.genres && movie.genres.length ? movie.genres.join(", ") : "No genres listed" %>
-  </p>
+    <!-- ⭐ Title moved here -->
+    <h1 class="detail-title"><%= movie.name %></h1>
 
-  <p><strong>Rating:</strong> <%= movie.rating %></p>
+    <p><strong>Year:</strong> <%= movie.year %></p>
 
-  <p><strong>Description:</strong> <%= movie.description %></p>
+    <p><strong>Genres:</strong>
+      <%= movie.genres && movie.genres.length ? movie.genres.join(", ") : "No genres listed" %>
+    </p>
 
-  <p><strong>Added by:</strong> <%= movie.createdBy ? movie.createdBy.username : "Unknown" %></p>
+    <p><strong>Rating:</strong> <%= movie.rating %></p>
 
-  <% if (movie.posterUrl) { %>
-    <div class="poster-wrapper">
-      <img src="<%= movie.posterUrl %>" alt="Poster" class="movie-poster">
+    <p><strong>Description:</strong> <%= movie.description %></p>
+
+    <p><strong>Added by:</strong>
+      <%= movie.createdBy ? movie.createdBy.username : "Unknown" %>
+    </p>
+
+    <!-- ⭐ Clean, consistent action buttons -->
+    <div class="detail-buttons">
+
+      <a href="/movies/<%= movie._id %>/edit" class="btn action-btn edit-btn">Edit</a>
+      
+      <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST" style="display:inline; background:none; padding:0; margin:0; box-shadow:none; border:none;">
+      <button type="submit" class="btn action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this movie?');"> Delete </button> 
+      </form>
+
+      <a href="/movies" class="btn action-btn back-btn">Back to list</a>
+
     </div>
-  <% } %>
-
-  <div class="movie-actions">
-
-    <a href="/movies/<%= movie._id %>/edit" class="btn btn-secondary">Edit</a>
-
-    <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
-      <button type="submit" class="btn btn-danger"
-        onclick="return confirm('Are you sure you want to delete this movie?');">
-        Delete
-      </button>
-    </form>
-
-    <a href="/movies" class="btn btn-light">Back to list</a>
 
   </div>
 
 </div>
 
 <%- include("../partials/footer") %>
+
+
 
 
