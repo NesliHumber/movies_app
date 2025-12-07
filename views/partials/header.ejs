@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Movies App</title>
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -22,13 +23,16 @@
 
   <!-- RIGHT -->
   <div class="nav-user-area">
-    <% if (currentUser) { %>
-      <span class="nav-user">Hi, <%= currentUser.username %></span>
-      <a href="/logout">Logout</a>
-    <% } else { %>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    <% } %>
+  <% if (currentUser) { %>
+    <span class="nav-user">
+      <i class="fa-solid fa-user user-icon"></i>
+      Hi, <%= currentUser.username %>
+    </span>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  <% } %>
   </div>
 </nav>
 

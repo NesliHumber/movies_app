@@ -3,7 +3,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: -apple-system, "Helvetica Neue", sans-serif;
-  background: #f5f6f7; /* Soft minimalist off-white */
+  background: #f5f6f7;
   color: #2a2e32;
 }
 
@@ -20,12 +20,12 @@ html, body {
 
 /* NAVIGATION BAR */
 .navbar {
-  background: #e0e4e7; /* soft light gray */
+  background: #e0e4e7;
   padding: 15px 30px;
   border-bottom: 2px solid #c9ced3;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* left | center | right */
+  justify-content: space-between;
 }
 
 /* Brand (left) */
@@ -39,7 +39,7 @@ html, body {
 /* Center navigation links */
 .nav-links {
   display: flex;
-  gap: 55px;  /* spacing between Home and Movies */
+  gap: 55px;
 }
 
 .nav-links a {
@@ -58,13 +58,21 @@ html, body {
 .nav-user-area {
   display: flex;
   align-items: center;
-  gap: 45px; /* spacing between Hi user and Logout */
+  gap: 45px; /* space between user and logout link */
 }
 
 /* Greeting text */
-.nav-user {
-  color: #2a2e32;
+nav-user {
+  display: flex;
+  align-items: center;
   font-weight: 600;
+  color: #2a2e32;
+}
+
+.user-icon {
+  font-size: 1.1rem;
+  margin-right: 6px;
+  color: #444;
 }
 
 /* FLASH MESSAGES */
@@ -198,7 +206,7 @@ ul.movie-list li a:hover {
 .movie-actions {
   display: flex;
   align-items: center;
-  gap: 20px; /* even clean spacing */
+  gap: 20px;
   margin-top: 20px;
 }
 
@@ -249,17 +257,15 @@ ul.movie-list li a:hover {
   background: #d4d6d7;
 }
 
-/* Also ensure Delete form looks inline */
 .movie-actions form {
   display: inline-block;
   margin: 0;
 }
 
 /* Add Movie button */
-
 .add-movie-wrapper {
   margin-bottom: 25px;
-  text-align: right; /* Align to the right like modern dashboards */
+  text-align: right;
 }
 
 .btn-primary {
@@ -276,4 +282,11 @@ ul.movie-list li a:hover {
   background: #6f8a99;
 }
 
-
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+}

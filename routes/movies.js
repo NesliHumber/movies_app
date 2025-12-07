@@ -1,9 +1,8 @@
-// routes/movies.js
 const express = require("express");
 const router = express.Router();
 const Movie = require("../models/Movie");
 
-// Auth middleware (we’ll define here)
+// Auth middleware
 function isLoggedIn(req, res, next) {
   if (!req.session.user) {
     req.flash("error", "You must be logged in.");
@@ -24,18 +23,18 @@ async function isOwner(req, res, next) {
     req.flash("error", "You are not allowed to edit/delete this movie.");
     return res.redirect("/movies");
   }
-  // attach to req for later use
+  // Attach to req for later use
   req.movie = movie;
   next();
 }
 
-// ====== 4. Create form to collect data & render errors =====
+// ====== Create form to collect data & render errors =====
 // GET /movies/new – form for adding movie (restricted to logged in user)
 router.get("/new", isLoggedIn, (req, res) => {
   res.render("movies/new", { errors: [], old: {} });
 });
 
-// ====== 5. Add movie with validation =====
+// ====== Add movie with validation =====
 // POST /movies
 router.post("/", isLoggedIn, async (req, res) => {
   const { name, description, year, genres, rating, posterUrl } = req.body;
@@ -81,7 +80,7 @@ router.get("/", async (req, res) => {
   res.render("movies/index", { movies });
 });
 
-// ====== 6. Movie details (id param) =====
+// ====== Display movie details (id param) =====
 // GET /movies/:id
 router.get("/:id", async (req, res) => {
   const movie = await Movie.findById(req.params.id).populate("createdBy", "username");
@@ -92,7 +91,7 @@ router.get("/:id", async (req, res) => {
   res.render("movies/show", { movie });
 });
 
-// ====== 7. Edit movie (id param) =====
+// ====== Edit movie details (id param) =====
 // GET /movies/:id/edit
 router.get("/:id/edit", isLoggedIn, isOwner, async (req, res) => {
   res.render("movies/edit", { errors: [], movie: req.movie });

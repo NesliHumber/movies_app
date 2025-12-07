@@ -1,4 +1,3 @@
-// routes/auth.js
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -8,7 +7,7 @@ router.get("/register", (req, res) => {
   res.render("auth/register", { errors: [], old: {} });
 });
 
-// 8. Registration with validation
+// Registration with validation
 router.post("/register", async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
   const errors = [];
@@ -53,7 +52,7 @@ router.get("/login", (req, res) => {
   res.render("auth/login", { errors: [], old: {} });
 });
 
-// 9. Login with validation
+// Login with validation
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const errors = [];
@@ -92,7 +91,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 10. Logout
+// Logout
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("/");
